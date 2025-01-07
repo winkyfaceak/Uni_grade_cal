@@ -21,7 +21,7 @@ public class Menu {
 
             int currentCount = calculator.getOnlyCount();
             float currentMaxMark = calculator.getMaxMark();
-            float currentWeight = calculator.getWeight();
+            double currentWeight = calculator.getWeight();
             System.out.println("\nOptions:");
             System.out.println("1. Enter grades (space-separated) " + Arrays.toString(currentGrades));
             System.out.println("2. Set the number of grades to consider " + currentCount);
@@ -87,7 +87,7 @@ public class Menu {
                 case 4:
                     System.out.print("Enter the weight: ");
                     try {
-                        float weight = Float.parseFloat(scanner.nextLine().trim());
+                        double weight = Double.parseDouble(scanner.nextLine().trim());
                         calculator.setWeight(weight);
                         System.out.println("Weight updated successfully.");
                     } catch (IllegalArgumentException e) {
@@ -98,7 +98,7 @@ public class Menu {
                 case 5:
                     if (canCalculate) {
                         try {
-                            float weightedGrade = calculator.gradeJudge();
+                            double weightedGrade = calculator.gradeJudge();
                             System.out.print("The calculated weighted grade is: \n" + weightedGrade);
                         } catch (IllegalStateException e) {
                             System.out.println("Error: " + e.getMessage());

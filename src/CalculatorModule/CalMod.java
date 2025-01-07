@@ -6,7 +6,7 @@ public class CalMod {
     private float[] grades;
     private int onlyCount;
     private float maxMark;
-    private float weight;
+    private double weight;
 
     public void gradeGrabber(String grade) {
         String[] gradeStrings = grade.split(" ");
@@ -33,11 +33,11 @@ public class CalMod {
         this.maxMark = maxMark;
     }
 
-    public float getWeight() {
+    public double getWeight() {
         return weight * 100;
     }
 
-    public void setWeight(float weightPercentage) {
+    public void setWeight(double weightPercentage) {
         if (weightPercentage < 0) throw new IllegalArgumentException("Weight percentage cannot be negative.");
         if (weightPercentage > 100) throw new IllegalArgumentException("Weight percentage cannot exceed 100.");
         this.weight = weightPercentage / 100;
@@ -66,7 +66,7 @@ public class CalMod {
         return !isWeightValid;
     }
 
-    public float gradeJudge() {
+    public double gradeJudge() {
         if (grades == null || grades.length == 0) {
             throw new IllegalStateException("No grades available for calculation.");
         }
@@ -85,6 +85,7 @@ public class CalMod {
             sum += grade;
         }
 
-        return ((sum / (maxMark * count)) * weight) * 100;
+        double calc = ((sum / (maxMark * count)) * weight) * 100;
+        return (double) Math.round(calc * 100.0) / 100.0;
     }
 }
